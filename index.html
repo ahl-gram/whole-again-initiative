@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Whole Again Initiative</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --dusty-rose: #d4a5a5;
+      --clay: #b87d6d;
+      --sand: #e8d5c4;
+      --deep-burgundy: #5d2e46;
+      --petal: #f5ece6;
+      --warm-white: #fdf8f5;
+      --muted-rose: #c49090;
+      --text-dark: #3a1e2e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--text-dark);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(253,248,245,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,165,165,0.25);
+      animation: fadeDown 0.8s ease both;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--deep-burgundy);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clay);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--deep-burgundy); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 4rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--deep-burgundy);
+      margin-bottom: 2rem;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--clay);
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #7a4a5a;
+      max-width: 420px;
+      margin-bottom: 3rem;
+      animation: fadeUp 1s 0.7s ease both;
+    }
+
+    .hero-ctas {
+      display: flex; gap: 1.25rem; align-items: center;
+      animation: fadeUp 1s 0.9s ease both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: var(--deep-burgundy);
+      color: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--deep-burgundy);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--deep-burgundy);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: transparent;
+      color: var(--clay);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--dusty-rose);
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--clay);
+      color: var(--deep-burgundy);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.4s 0.4s ease both;
+    }
+
+    /* Painterly gradient panel */
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 60% 40%, #d4a5a5 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 30% 70%, #b87d6d33 0%, transparent 55%),
+        radial-gradient(ellipse 100% 100% at 80% 80%, #5d2e4622 0%, transparent 50%),
+        linear-gradient(160deg, #e8d5c4 0%, #f5ece6 50%, #d4a5a5 100%);
+    }
+
+    .hero-right-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; align-items: flex-start;
+      padding: 4rem;
+      z-index: 2;
+    }
+
+    .hero-stat-block {
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+
+    .hero-stat {
+      animation: fadeUp 1s ease both;
+    }
+    .hero-stat:nth-child(1) { animation-delay: 1s; }
+    .hero-stat:nth-child(2) { animation-delay: 1.2s; }
+    .hero-stat:nth-child(3) { animation-delay: 1.4s; }
+
+    .hero-stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--deep-burgundy);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-top: 0.25rem;
+    }
+
+    /* Decorative circle */
+    .hero-circle {
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,165,165,0.4);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotateSlow 30s linear infinite;
+    }
+    .hero-circle::before {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px dashed rgba(184,125,109,0.3);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Vertical rule */
+    .hero-divider {
+      position: absolute;
+      left: 0; top: 15%; bottom: 15%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--dusty-rose), transparent);
+    }
+
+    /* ── MISSION BAND ────────────────────────────────────── */
+    .mission-band {
+      background: var(--deep-burgundy);
+      padding: 5rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-band::after {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(212,165,165,0.07);
+    }
+
+    .mission-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dusty-rose);
+      margin-bottom: 1rem;
+    }
+
+    .mission-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1.2;
+    }
+    .mission-heading em {
+      font-style: italic;
+      color: var(--dusty-rose);
+    }
+
+    .mission-body {
+      font-size: 1.05rem;
+      color: rgba(232,213,196,0.85);
+      line-height: 1.85;
+    }
+    .mission-body p + p { margin-top: 1.25rem; }
+
+    /* ── HOW IT WORKS ────────────────────────────────────── */
+    .how {
+      padding: 8rem 6rem;
+      background: var(--petal);
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3vw, 3.6rem);
+      font-weight: 300;
+      color: var(--deep-burgundy);
+      line-height: 1.15;
+      margin-bottom: 4rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      counter-reset: steps;
+    }
+
+    .step {
+      counter-increment: steps;
+      position: relative;
+      padding-top: 2rem;
+      border-top: 2px solid var(--dusty-rose);
+      transition: transform 0.3s ease;
+    }
+    .step:hover { transform: translateY(-4px); }
+
+    .step::before {
+      content: "0" counter(steps);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--dusty-rose);
+      line-height: 1;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--deep-burgundy);
+      margin-bottom: 0.75rem;
+    }
+
+    .step-body {
+      font-size: 0.98rem;
+      color: #7a4a5a;
+      line-height: 1.75;
+    }
+
+    /* ── IMPACT ──────────────────────────────────────────── */
+    .impact {
+      padding: 8rem 6rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .impact-quote {
+      position: relative;
+    }
+    .impact-quote::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12rem;
+      font-weight: 300;
+      color: var(--dusty-rose);
+      opacity: 0.3;
+      position: absolute;
+      top: -3.5rem; left: -2rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .impact-quote blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--deep-burgundy);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .impact-attribution {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-top: 1.5rem;
+    }
+
+    .impact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .impact-card {
+      background: var(--petal);
+      border-left: 3px solid var(--dusty-rose);
+      padding: 1.75rem 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .impact-card:hover {
+      border-left-color: var(--deep-burgundy);
+      transform: translateX(6px);
+    }
+
+    .impact-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--deep-burgundy);
+      line-height: 1;
+    }
+    .impact-card-desc {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-top: 0.25rem;
+    }
+
+    /* ── ELIGIBILITY ─────────────────────────────────────── */
+    .eligibility {
+      padding: 8rem 6rem;
+      background: var(--sand);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+
+    .eligibility-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .eligibility-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1rem;
+      color: #5a3040;
+    }
+
+    .eligibility-list li::before {
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: var(--deep-burgundy);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    .apply-form-promo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .form-note {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--clay);
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid var(--dusty-rose);
+    }
+
+    /* ── DONATE ──────────────────────────────────────────── */
+    .donate {
+      padding: 9rem 6rem;
+      background: var(--deep-burgundy);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .donate::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,165,165,0.12);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .donate::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,165,165,0.18);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .donate-inner { position: relative; z-index: 2; }
+
+    .donate-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dusty-rose);
+      margin-bottom: 1.25rem;
+    }
+
+    .donate-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 5rem);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .donate-heading em { font-style: italic; color: var(--dusty-rose); }
+
+    .donate-subtext {
+      color: rgba(232,213,196,0.75);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto 3rem;
+    }
+
+    .donate-amounts {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .amount-chip {
+      padding: 0.75rem 1.75rem;
+      border: 1px solid rgba(212,165,165,0.4);
+      color: var(--sand);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      letter-spacing: 0.06em;
+    }
+    .amount-chip:hover, .amount-chip.active {
+      background: var(--dusty-rose);
+      border-color: var(--dusty-rose);
+      color: var(--deep-burgundy);
+    }
+
+    .btn-donate {
+      display: inline-block;
+      padding: 1rem 3.5rem;
+      background: var(--dusty-rose);
+      color: var(--deep-burgundy);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--dusty-rose);
+      transition: all 0.3s ease;
+    }
+    .btn-donate:hover {
+      background: transparent;
+      color: var(--dusty-rose);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      padding: 4rem 6rem;
+      background: #2a1020;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: rgba(232,213,196,0.5);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    .footer-col-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dusty-rose);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(232,213,196,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--dusty-rose); }
+
+    .footer-bottom {
+      padding: 1.5rem 6rem;
+      background: #1e0c18;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: rgba(232,213,196,0.35);
+    }
+
+    .footer-tax {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      color: rgba(232,213,196,0.35);
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes rotateSlow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 8rem 2rem 4rem; }
+      .hero-right { height: 320px; }
+      .mission-band,
+      .impact,
+      .eligibility { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2rem; }
+      .how { padding: 5rem 2rem; }
+      .steps { grid-template-columns: 1fr; }
+      .donate { padding: 6rem 2rem; }
+      footer { grid-template-columns: 1fr; padding: 3rem 2rem; }
+      .footer-bottom { padding: 1.25rem 2rem; flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">The Whole Again Initiative</a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/apply">Apply</a></li>
+      <li><a href="/donate">Donate</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Restoring Wholeness · One Woman at a Time</p>
+      <h1 class="hero-title">
+        Reclaim<br/>
+        What Cancer<br/>
+        <em>Cannot Take</em>
+      </h1>
+      <p class="hero-tagline">
+        We fund 3D areola restoration tattooing for breast cancer survivors — because healing is physical, emotional, and deeply personal.
+      </p>
+      <div class="hero-ctas">
+        <a href="#apply" class="btn-primary">Apply for a Grant</a>
+        <a href="#donate" class="btn-secondary">Support Our Work</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-circle"></div>
+      <div class="hero-right-content">
+        <div class="hero-stat-block">
+          <div class="hero-stat">
+            <div class="hero-stat-number">1 in 8</div>
+            <div class="hero-stat-label">Women diagnosed with breast cancer in their lifetime</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">~$800</div>
+            <div class="hero-stat-label">Average cost of areola restoration, rarely covered by insurance</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">100%</div>
+            <div class="hero-stat-label">Of our grants go directly to procedure costs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION BAND -->
+  <section class="mission-band" id="mission">
+    <div>
+      <p class="mission-label">Our Mission</p>
+      <h2 class="mission-heading">
+        More than<br/>
+        <em>skin deep</em>
+      </h2>
+    </div>
+    <div class="mission-body reveal">
+      <p>
+        After mastectomy, many women feel their healing journey is incomplete. 3D areola restoration tattooing is a powerful final step — one that helps women reconnect with their bodies and move forward with confidence.
+      </p>
+      <p>
+        But it's often considered cosmetic. Insurance rarely covers it. And the cost falls entirely on the women who need it most. The Whole Again Initiative closes that gap through grant funding, so finances never stand between a survivor and her sense of self.
+      </p>
+      <p>
+        We partner with skilled paramedical tattoo artists across the country to ensure every woman we serve receives compassionate, expert care — at no cost to her.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <p class="section-label reveal">The Process</p>
+    <h2 class="section-heading reveal">How our grants work</h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <h3 class="step-title">Apply Online</h3>
+        <p class="step-body">Complete our simple application. We ask about your cancer history, financial situation, and where you are in your recovery. No lengthy forms — we respect your time and privacy.</p>
+      </div>
+      <div class="step reveal">
+        <h3 class="step-title">Get Matched</h3>
+        <p class="step-body">We pair you with a vetted paramedical tattoo artist near you who specializes in areola restoration. Every artist in our network has been personally reviewed for skill, sensitivity, and expertise.</p>
+      </div>
+      <div class="step reveal">
+        <h3 class="step-title">Heal Fully</h3>
+        <p class="step-body">We pay your artist directly. You arrive, you receive your procedure, and you leave without a bill. That's it. You've been through enough — this part should be simple.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="impact" id="impact">
+    <div class="impact-quote reveal">
+      <blockquote>
+        "I'd been a survivor for three years. But it wasn't until the restoration that I finally felt like myself again. I looked in the mirror and just… exhaled."
+      </blockquote>
+      <p class="impact-attribution">— Grant recipient, Ohio · 2023</p>
+    </div>
+
+    <div class="impact-cards">
+      <div class="impact-card reveal">
+        <div class="impact-card-num">312</div>
+        <div class="impact-card-desc">Women funded since our founding</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-card-num">48</div>
+        <div class="impact-card-desc">Partner artists across 32 states</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-card-num">$0</div>
+        <div class="impact-card-desc">Out-of-pocket cost to every grant recipient</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-card-num">97%</div>
+        <div class="impact-card-desc">Of recipients report improved body confidence post-procedure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELIGIBILITY / APPLY -->
+  <section class="eligibility" id="apply">
+    <div>
+      <p class="section-label reveal">Grant Eligibility</p>
+      <h2 class="section-heading reveal">Who we help</h2>
+      <ul class="eligibility-list reveal">
+        <li>Women who have undergone mastectomy or lumpectomy for breast cancer</li>
+        <li>U.S. residents with financial need (income-based, flexible criteria)</li>
+        <li>Fully healed surgical sites as confirmed by your medical provider</li>
+        <li>No prior areola restoration procedure within the past 3 years</li>
+        <li>Willingness to share your story (optionally) to help us raise awareness</li>
+      </ul>
+    </div>
+
+    <div class="apply-form-promo reveal">
+      <div>
+        <p class="section-label">Ready to apply?</p>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--deep-burgundy);line-height:1.2;margin-bottom:1rem;">
+          Your story matters.<br/><em>Let us help write the next chapter.</em>
+        </h3>
+        <p style="font-size:0.98rem;color:#7a4a5a;margin-bottom:1.75rem;">Applications are reviewed on a rolling basis. We typically respond within 2 weeks of submission.</p>
+        <a href="#" class="btn-primary">Start Your Application</a>
+      </div>
+      <div class="form-note">
+        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep-burgundy);">Need help applying?</strong><br/>
+        <span style="font-size:0.9rem;color:#7a4a5a;">Call us at (800) 555-0192 or email <a href="/cdn-cgi/l/email-protection#ee899c8f809a9dae998681828b8f898f8780c0819c89" style="color:var(--clay);"><span class="__cf_email__" data-cfemail="b7d0c5d6d9c3c4f7c0dfd8dbd2d6d0d6ded999d8c5d0">[email&#160;protected]</span></a>. A real human answers.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE -->
+  <section class="donate" id="donate">
+    <div class="donate-inner">
+      <p class="donate-eyebrow">Make a Difference</p>
+      <h2 class="donate-heading">
+        Give a woman<br/>
+        <em>her whole self back</em>
+      </h2>
+      <p class="donate-subtext">
+        Every dollar goes directly toward funding procedures. No administrative bloat — just real impact for real women.
+      </p>
+      <div class="donate-amounts">
+        <button class="amount-chip">$25</button>
+        <button class="amount-chip active">$50</button>
+        <button class="amount-chip">$100</button>
+        <button class="amount-chip">$250</button>
+        <button class="amount-chip">Other</button>
+      </div>
+      <a href="#" class="btn-donate">Donate Now</a>
+      <p style="margin-top:1.5rem;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:rgba(232,213,196,0.4);text-transform:uppercase;">
+        The Whole Again Initiative is a 501(c)(3) nonprofit. Donations are tax-deductible.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <p class="footer-brand">The Whole Again Initiative</p>
+      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/apply">Apply for a Grant</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Resources</p>
+      <ul class="footer-links">
+        <li><a href="#">For Medical Providers</a></li>
+        <li><a href="#">Join Our Artist Network</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Annual Report</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 The Whole Again Initiative · All rights reserved.</p>
+    <p class="footer-tax">EIN 00-0000000 · 501(c)(3) Tax-Exempt Organization</p>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Donate chip toggle
+    document.querySelectorAll('.amount-c

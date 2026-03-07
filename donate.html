@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate · The Whole Again Initiative</title>
+  <link rel="stylesheet" href="/css/shared.css"/>
+  <style>
+    /* ── DONATE MAIN ─────────────────────────────────────── */
+    .donate-main {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* Left: impact context */
+    .donate-context p {
+      font-size: 1.05rem;
+      color: #5a3040;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .impact-breakdown {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .impact-row {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--petal);
+      border-left: 3px solid var(--dusty-rose);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .impact-row:hover {
+      border-left-color: var(--deep-burgundy);
+      transform: translateX(5px);
+    }
+    .impact-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--deep-burgundy);
+      flex-shrink: 0;
+      min-width: 70px;
+    }
+    .impact-desc {
+      font-size: 0.92rem;
+      color: #7a4a5a;
+      line-height: 1.5;
+    }
+
+    /* Right: donation widget */
+    .donate-widget {
+      background: var(--petal);
+      padding: 3rem;
+      position: sticky;
+      top: 6rem;
+    }
+
+    .widget-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--deep-burgundy);
+      margin-bottom: 0.5rem;
+    }
+    .widget-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 2rem;
+    }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .amount-btn {
+      padding: 0.85rem 0.5rem;
+      border: 1.5px solid var(--dusty-rose);
+      background: transparent;
+      color: var(--clay);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .amount-btn:hover, .amount-btn.selected {
+      background: var(--deep-burgundy);
+      border-color: var(--deep-burgundy);
+      color: var(--warm-white);
+    }
+
+    .custom-amount-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .custom-amount-wrap span {
+      position: absolute;
+      left: 1rem; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--clay);
+      pointer-events: none;
+    }
+    .custom-amount-wrap input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 1.75rem;
+      border: 1.5px solid rgba(212,165,165,0.5);
+      background: var(--warm-white);
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .custom-amount-wrap input:focus { border-color: var(--clay); }
+
+    .frequency-toggle {
+      display: flex;
+      gap: 0;
+      margin-bottom: 1.5rem;
+      border: 1.5px solid var(--dusty-rose);
+    }
+    .freq-btn {
+      flex: 1;
+      padding: 0.7rem;
+      border: none;
+      background: transparent;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .freq-btn.selected {
+      background: var(--deep-burgundy);
+      color: var(--warm-white);
+    }
+
+    .widget-impact-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--deep-burgundy);
+      margin-bottom: 1.5rem;
+      min-height: 1.6em;
+      transition: opacity 0.3s;
+    }
+
+    .btn-give {
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--deep-burgundy);
+      color: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 2px solid var(--deep-burgundy);
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 1rem;
+    }
+    .btn-give:hover { background: transparent; color: var(--deep-burgundy); }
+
+    .widget-disclaimer {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: rgba(122,74,90,0.55);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── OTHER WAYS TO GIVE ──────────────────────────────── */
+    .other-ways {
+      padding: 7rem 6rem;
+      background: var(--sand);
+    }
+    .ways-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    .way-card {
+      padding: 2.5rem 2rem;
+      background: var(--warm-white);
+      border-top: 3px solid var(--dusty-rose);
+      transition: transform 0.3s;
+    }
+    .way-card:hover { transform: translateY(-5px); }
+    .way-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .way-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--deep-burgundy);
+      margin-bottom: 0.5rem;
+    }
+    .way-body { font-size: 0.92rem; color: #7a4a5a; line-height: 1.7; }
+
+    /* ── TRANSPARENCY ────────────────────────────────────── */
+    .transparency {
+      padding: 7rem 6rem;
+      background: var(--deep-burgundy);
+      text-align: center;
+    }
+    .transparency .section-label { color: var(--dusty-rose); }
+    .transparency .section-heading { color: var(--sand); }
+    .trans-stats {
+      display: flex;
+      justify-content: center;
+      gap: 6rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .trans-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--dusty-rose);
+      line-height: 1;
+    }
+    .trans-stat-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(232,213,196,0.6);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .donate-main { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      .donate-widget { position: static; }
+      .other-ways { padding: 4rem 2rem; }
+      .ways-grid { grid-template-columns: 1fr; }
+      .transparency { padding: 4rem 2rem; }
+      .trans-stats { gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">The Whole Again Initiative</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/apply">Apply</a></li>
+      <li><a href="/donate" class="active">Donate</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <p class="page-banner-eyebrow">Support Our Work</p>
+    <h1 class="page-banner-title">Give a woman<br/><em>her whole self back</em></h1>
+    <p class="page-banner-sub">100% of your donation funds procedures for breast cancer survivors. No administrative overhead. Just real impact.</p>
+  </div>
+
+  <!-- MAIN DONATE SECTION -->
+  <section class="donate-main">
+
+    <!-- Left: context -->
+    <div class="donate-context reveal">
+      <p class="section-label">Why It Matters</p>
+      <h2 class="section-heading">Your gift does<br/>one thing</h2>
+      <p>It pays for a woman's areola restoration procedure — in full. We work with a network of paramedical tattoo artists who offer deeply discounted rates to our grant recipients. Every dollar donated is stretched as far as it can go.</p>
+      <p>Because we operate with minimal overhead, your generosity translates directly into care. No administrative fees, no fundraising salaries, no bureaucracy between your gift and the woman it helps.</p>
+
+      <div class="impact-breakdown">
+        <div class="impact-row">
+          <span class="impact-amount">$25</span>
+          <span class="impact-desc">Covers artist consultation and intake for one recipient</span>
+        </div>
+        <div class="impact-row">
+          <span class="impact-amount">$50</span>
+          <span class="impact-desc">Covers supplies and aftercare products for a full procedure</span>
+        </div>
+        <div class="impact-row">
+          <span class="impact-amount">$100</span>
+          <span class="impact-desc">Covers half the cost of a unilateral restoration procedure</span>
+        </div>
+        <div class="impact-row">
+          <span class="impact-amount">$250</span>
+          <span class="impact-desc">Funds a full bilateral restoration — completely restoring a survivor</span>
+        </div>
+        <div class="impact-row">
+          <span class="impact-amount">$500+</span>
+          <span class="impact-desc">Sponsors a recipient from application to completed procedure</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: widget -->
+    <div class="donate-widget reveal">
+      <p class="widget-title">Make a gift</p>
+      <p class="widget-sub">Secure · Tax-deductible · 100% to procedures</p>
+
+      <div class="frequency-toggle">
+        <button class="freq-btn selected" onclick="setFreq(this,'one-time')">One-Time</button>
+        <button class="freq-btn" onclick="setFreq(this,'monthly')">Monthly</button>
+      </div>
+
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmount(this, 25)">$25</button>
+        <button class="amount-btn selected" onclick="selectAmount(this, 50)">$50</button>
+        <button class="amount-btn" onclick="selectAmount(this, 100)">$100</button>
+        <button class="amount-btn" onclick="selectAmount(this, 250)">$250</button>
+        <button class="amount-btn" onclick="selectAmount(this, 500)">$500</button>
+        <button class="amount-btn" onclick="selectAmount(this, 0)">Other</button>
+      </div>
+
+      <div class="custom-amount-wrap">
+        <span>$</span>
+        <input type="number" id="custom-input" placeholder="Enter amount" min="1" oninput="updateImpact()"/>
+      </div>
+
+      <p class="widget-impact-line" id="impact-line">Your $50 covers supplies for one woman's full procedure.</p>
+
+      <button class="btn-give" onclick="handleDonate()">Donate Now</button>
+
+      <p class="widget-disclaimer">
+        The Whole Again Initiative is a 501(c)(3) nonprofit.<br/>
+        EIN 00-0000000 · Donations are tax-deductible to the fullest extent of the law.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- OTHER WAYS TO GIVE -->
+  <section class="other-ways">
+    <p class="section-label reveal">More Ways to Help</p>
+    <h2 class="section-heading reveal">Beyond a donation</h2>
+    <div class="ways-grid">
+      <div class="way-card reveal">
+        <div class="way-icon">🎨</div>
+        <p class="way-title">Join Our Artist Network</p>
+        <p class="way-body">Are you a paramedical tattoo artist? Partner with us to serve grant recipients in your area. We handle the paperwork — you bring the healing.</p>
+      </div>
+      <div class="way-card reveal">
+        <div class="way-icon">🏥</div>
+        <p class="way-title">Medical Provider Referrals</p>
+        <p class="way-body">Oncologists, plastic surgeons, and breast care nurses — help us reach survivors who need us by sharing our grant program with your patients.</p>
+      </div>
+      <div class="way-card reveal">
+        <div class="way-icon">📣</div>
+        <p class="way-title">Spread the Word</p>
+        <p class="way-body">Share our mission on social media, in your community, or with a survivor you know. Awareness is one of the most powerful things you can give.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENCY -->
+  <section class="transparency">
+    <p class="section-label reveal">Financial Transparency</p>
+    <h2 class="section-heading reveal" style="margin-bottom:0;">We earn your trust with numbers</h2>
+    <div class="trans-stats">
+      <div class="reveal">
+        <p class="trans-stat-num">100%</p>
+        <p class="trans-stat-label">Of donations fund procedures directly</p>
+      </div>
+      <div class="reveal">
+        <p class="trans-stat-num">$0</p>
+        <p class="trans-stat-label">Paid in executive salaries</p>
+      </div>
+      <div class="reveal">
+        <p class="trans-stat-num">312</p>
+        <p class="trans-stat-label">Women served since founding</p>
+      </div>
+      <div class="reveal">
+        <p class="trans-stat-num">4.8★</p>
+        <p class="trans-stat-label">Average recipient satisfaction</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <a class="footer-brand" href="/">The Whole Again Initiative</a>
+      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/apply">Apply for a Grant</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Resources</p>
+      <ul class="footer-links">
+        <li><a href="#">For Medical Providers</a></li>
+        <li><a href="#">Join Our Artist Network</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 The Whole Again Initiative · All rights reserved.</p>
+    <p class="footer-tax">EIN 00-0000000 · 501(c)(3) Tax-Exempt Organization</p>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    let currentAmount = 50;
+    let currentFreq = 'one-time';
+
+    const impactMessages = {
+      25:  'Your $25 covers the consultation and intake for one recipient.',
+      50:  'Your $50 covers supplies for one woman\'s full procedure.',
+      100: 'Your $100 covers half the cost of a unilateral restoration.',
+      250: 'Your $250 funds a complete bilateral restoration — fully restoring one woman.',
+      500: 'Your $500 sponsors a recipient from application to completed care.',
+    };
+
+    function selectAmount(btn, amount) {
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const input = document.getElementById('custom-input');
+      if (amount === 0) {
+        input.value = '';
+        input.focus();
+        currentAmount = null;
+      } else {
+        input.value = '';
+        currentAmount = amount;
+      }
+      updateImpact();
+    }
+
+    function updateImpact() {
+      const val = parseInt(document.getElementById('custom-input').value) || currentAmount;
+      const line = document.getElementById('impact-line');
+      if (!val) { line.textContent = ''; return; }
+      if (impactMessages[val]) {
+        line.textContent = impactMessages[val];
+      } else if (val < 25) {
+        line.textContent = `Every dollar counts. Thank you for your generosity.`;
+      } else {
+        line.textContent = `Your gift of $${val} helps restore another survivor's sense of wholeness.`;
+      }
+    }
+
+    function setFreq(btn, freq) {
+      document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      currentFreq = freq;
+    }
+
+    function handleDonate() {
+      alert('Thank you! Donation processing will be connected here (e.g. Stripe or a donation platform).');
+    }
+
+    updateImpact();
+  </script>
+</body>
+</html>

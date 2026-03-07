@@ -1,0 +1,6 @@
+# Netlify URL redirects
+# Clean URLs — allows /about instead of /about.html
+
+/about    /about.html    200
+/apply    /apply.html    200
+/donate   /donate.html   200

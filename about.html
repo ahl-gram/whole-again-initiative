@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us · The Whole Again Initiative</title>
+  <link rel="stylesheet" href="/css/shared.css"/>
+  <style>
+    /* ── MISSION SECTION ────────────────────────────────── */
+    .mission {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .mission-text p + p { margin-top: 1.25rem; }
+    .mission-text p { font-size: 1.05rem; color: #5a3040; line-height: 1.85; }
+
+    .mission-values {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding-top: 0.5rem;
+    }
+    .value-item {
+      border-left: 3px solid var(--dusty-rose);
+      padding-left: 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .value-item:hover { border-left-color: var(--deep-burgundy); }
+    .value-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--deep-burgundy);
+      margin-bottom: 0.4rem;
+    }
+    .value-body { font-size: 0.95rem; color: #7a4a5a; line-height: 1.7; }
+
+    /* ── STORY BAND ─────────────────────────────────────── */
+    .story-band {
+      background: var(--deep-burgundy);
+      padding: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-band::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,165,165,0.1);
+      bottom: -200px; right: -100px;
+    }
+    .story-inner {
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+    .story-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dusty-rose);
+      margin-bottom: 1rem;
+    }
+    .story-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3vw, 3.2rem);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .story-heading em { font-style: italic; color: var(--dusty-rose); }
+    .story-body { font-size: 1.05rem; color: rgba(232,213,196,0.82); line-height: 1.85; }
+    .story-body p + p { margin-top: 1.25rem; }
+
+    /* ── BOARD ──────────────────────────────────────────── */
+    .board {
+      padding: 7rem 6rem;
+      background: var(--petal);
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .board-card {
+      background: var(--warm-white);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .board-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(93,46,70,0.1);
+    }
+
+    .board-card-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, var(--sand) 0%, var(--dusty-rose) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .board-card-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(93,46,70,0.15) 100%);
+    }
+    .board-card-initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(93,46,70,0.35);
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+    .board-card-photo-tag {
+      position: absolute;
+      bottom: 0.75rem; right: 0.75rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(93,46,70,0.5);
+      z-index: 2;
+    }
+
+    .board-card-body {
+      padding: 1.5rem 1.75rem 2rem;
+      border-top: 2px solid var(--dusty-rose);
+    }
+    .board-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--deep-burgundy);
+      margin-bottom: 0.25rem;
+    }
+    .board-card-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+    .board-card-bio {
+      font-size: 0.92rem;
+      color: #7a4a5a;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .board-card-bio.placeholder {
+      color: rgba(122,74,90,0.45);
+      font-style: italic;
+    }
+
+    /* ── JOIN CTA ────────────────────────────────────────── */
+    .join {
+      padding: 6rem;
+      background: var(--sand);
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .join-text p {
+      font-size: 1.05rem;
+      color: #5a3040;
+      line-height: 1.85;
+      margin-top: 1rem;
+    }
+    .join-actions { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+
+    @media (max-width: 900px) {
+      .mission, .join { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      .story-band { padding: 4rem 2rem; }
+      .board { padding: 4rem 2rem; }
+      .board-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 901px) and (max-width: 1100px) {
+      .board-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">The Whole Again Initiative</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about" class="active">About</a></li>
+      <li><a href="/apply">Apply</a></li>
+      <li><a href="/donate">Donate</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <p class="page-banner-eyebrow">Our Story & Team</p>
+    <h1 class="page-banner-title">The people behind<br/><em>the mission</em></h1>
+    <p class="page-banner-sub">We believe that healing from breast cancer doesn't end in the operating room. The Whole Again Initiative was founded to close the gap insurance leaves behind.</p>
+  </div>
+
+  <!-- MISSION + VALUES -->
+  <section class="mission">
+    <div class="mission-text reveal">
+      <p class="section-label">Why We Exist</p>
+      <h2 class="section-heading">A gap no one<br/>should fall through</h2>
+      <p>Breast cancer treatment has come a long way. Survival rates are improving, surgical techniques are advancing, and awareness is higher than ever. But for many women, the journey doesn't feel complete — even after treatment ends.</p>
+      <p>3D areola restoration tattooing is a final, powerful step in the physical and emotional recovery process. It helps women feel at home in their bodies again. Yet it's routinely classified as cosmetic, leaving survivors to absorb costs on their own — often at the most financially strained point in their lives.</p>
+      <p>The Whole Again Initiative was founded to change that, one grant at a time.</p>
+    </div>
+    <div class="mission-values reveal">
+      <div class="value-item">
+        <p class="value-title">Dignity First</p>
+        <p class="value-body">Every woman we serve is treated with the utmost care and respect. Our process is designed to be simple, private, and free of bureaucratic burden.</p>
+      </div>
+      <div class="value-item">
+        <p class="value-title">100% to Recipients</p>
+        <p class="value-body">Grant funds go directly to procedure costs. We operate lean so every dollar donated reaches the women who need it.</p>
+      </div>
+      <div class="value-item">
+        <p class="value-title">Artist Excellence</p>
+        <p class="value-body">We partner only with vetted paramedical tattoo artists who specialize in areola restoration — people who bring both skill and compassion to their work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY BAND -->
+  <section class="story-band">
+    <div class="story-inner reveal">
+      <p class="story-label">Our Founding</p>
+      <h2 class="story-heading">Born from <em>personal experience</em></h2>
+      <div class="story-body">
+        <p>The Whole Again Initiative was born from a simple observation: the women doing the most profound, meaningful work in post-mastectomy care — the paramedical tattoo artists restoring what cancer took — were largely invisible to the systems meant to support survivors.</p>
+        <p>Our founders saw this gap up close and decided not to wait for insurance companies or healthcare policy to fix it. We built a direct, human-centered solution: a grant program funded by community generosity, administered with care, and focused entirely on outcomes for survivors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOARD OF DIRECTORS -->
+  <section class="board" id="board">
+    <p class="section-label reveal">Leadership</p>
+    <h2 class="section-heading reveal">Board of Directors</h2>
+
+    <div class="board-grid">
+
+      <!-- Kelly Fowler -->
+      <div class="board-card reveal">
+        <div class="board-card-photo">
+          <span class="board-card-initials">KF</span>
+          <span class="board-card-photo-tag">Photo coming soon</span>
+        </div>
+        <div class="board-card-body">
+          <p class="board-card-name">Kelly Fowler</p>
+          <p class="board-card-title"><!-- TODO: Add title -->&nbsp;</p>
+          <p class="board-card-bio placeholder">Bio coming soon.</p>
+        </div>
+      </div>
+
+      <!-- Irene Wahba -->
+      <div class="board-card reveal">
+        <div class="board-card-photo">
+          <span class="board-card-initials">IW</span>
+          <span class="board-card-photo-tag">Photo coming soon</span>
+        </div>
+        <div class="board-card-body">
+          <p class="board-card-name">Irene Wahba</p>
+          <p class="board-card-title"><!-- TODO: Add title -->&nbsp;</p>
+          <p class="board-card-bio placeholder">Bio coming soon.</p>
+        </div>
+      </div>
+
+      <!-- Mindy -->
+      <div class="board-card reveal">
+        <div class="board-card-photo">
+          <span class="board-card-initials">M</span>
+          <span class="board-card-photo-tag">Photo coming soon</span>
+        </div>
+        <div class="board-card-body">
+          <p class="board-card-name">Mindy</p>
+          <p class="board-card-title"><!-- TODO: Add last name & title -->&nbsp;</p>
+          <p class="board-card-bio placeholder">Bio coming soon.</p>
+        </div>
+      </div>
+
+      <!-- Jennifer Echeverry -->
+      <div class="board-card reveal">
+        <div class="board-card-photo">
+          <span class="board-card-initials">JE</span>
+          <span class="board-card-photo-tag">Photo coming soon</span>
+        </div>
+        <div class="board-card-body">
+          <p class="board-card-name">Jennifer Echeverry</p>
+          <p class="board-card-title"><!-- TODO: Add title -->&nbsp;</p>
+          <p class="board-card-bio placeholder">Bio coming soon.</p>
+        </div>
+      </div>
+
+      <!-- Jill Elliott -->
+      <div class="board-card reveal">
+        <div class="board-card-photo">
+          <span class="board-card-initials">JE</span>
+          <span class="board-card-photo-tag">Photo coming soon</span>
+        </div>
+        <div class="board-card-body">
+          <p class="board-card-name">Jill Elliott</p>
+          <p class="board-card-title"><!-- TODO: Add title -->&nbsp;</p>
+          <p class="board-card-bio placeholder">Bio coming soon.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="join">
+    <div class="join-text reveal">
+      <p class="section-label">Get Involved</p>
+      <h2 class="section-heading">Join our mission</h2>
+      <p>Whether you're a breast cancer survivor seeking support, a paramedical tattoo artist wanting to join our network, or someone looking to give — there's a place for you here.</p>
+    </div>
+    <div class="join-actions reveal">
+      <a href="/apply" class="btn-primary">Apply for a Grant</a>
+      <a href="/donate" class="btn-secondary">Make a Donation</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <a class="footer-brand" href="/">The Whole Again Initiative</a>
+      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/apply">Apply for a Grant</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Resources</p>
+      <ul class="footer-links">
+        <li><a href="#">For Medical Providers</a></li>
+        <li><a href="#">Join Our Artist Network</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 The Whole Again Initiative · All rights reserved.</p>
+    <p class="footer-tax">EIN 00-0000000 · 501(c)(3) Tax-Exempt Organization</p>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

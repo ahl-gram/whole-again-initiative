@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply for a Grant · The Whole Again Initiative</title>
+  <link rel="stylesheet" href="/css/shared.css"/>
+  <style>
+    /* ── ELIGIBILITY ─────────────────────────────────────── */
+    .eligibility {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .elig-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+    .elig-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 1rem; color: #5a3040; line-height: 1.6;
+    }
+    .elig-list li::before {
+      content: '';
+      display: block; flex-shrink: 0;
+      width: 22px; height: 22px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: var(--deep-burgundy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E") center/14px no-repeat;
+    }
+
+    .elig-note {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border: 1px solid var(--dusty-rose);
+      background: var(--petal);
+      font-size: 0.95rem;
+      color: #7a4a5a;
+      line-height: 1.7;
+    }
+    .elig-note strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--deep-burgundy);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── APPLICATION FORM ────────────────────────────────── */
+    .application {
+      padding: 7rem 6rem;
+      background: var(--petal);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2.5rem;
+      margin-top: 3rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+    label .required { color: var(--clay); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--warm-white);
+      border: 1px solid rgba(212,165,165,0.5);
+      color: var(--text-dark);
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--clay);
+      box-shadow: 0 0 0 3px rgba(184,125,109,0.1);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23b87d6d'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    textarea { resize: vertical; min-height: 120px; }
+
+    .form-divider {
+      grid-column: 1 / -1;
+      border: none;
+      border-top: 1px solid rgba(212,165,165,0.3);
+      margin: 1rem 0;
+    }
+
+    .form-section-title {
+      grid-column: 1 / -1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--deep-burgundy);
+      padding-top: 0.5rem;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      accent-color: var(--deep-burgundy);
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #5a3040;
+      cursor: pointer;
+    }
+
+    .form-submit {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-privacy {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: rgba(122,74,90,0.6);
+    }
+
+    /* ── PROCESS SIDEBAR ─────────────────────────────────── */
+    .what-to-expect {
+      padding: 7rem 6rem;
+      background: var(--deep-burgundy);
+    }
+    .expect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .expect-item { position: relative; padding-top: 1.5rem; border-top: 2px solid rgba(212,165,165,0.3); }
+    .expect-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(212,165,165,0.35);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .expect-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--sand);
+      margin-bottom: 0.5rem;
+    }
+    .expect-body { font-size: 0.92rem; color: rgba(232,213,196,0.7); line-height: 1.7; }
+
+    @media (max-width: 900px) {
+      .eligibility { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      .application { padding: 4rem 2rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full, .form-divider, .form-section-title, .checkbox-group, .form-submit { grid-column: 1; }
+      .what-to-expect { padding: 4rem 2rem; }
+      .expect-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">The Whole Again Initiative</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/apply" class="active">Apply</a></li>
+      <li><a href="/donate">Donate</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <p class="page-banner-eyebrow">Grant Applications</p>
+    <h1 class="page-banner-title">Apply for a<br/><em>restoration grant</em></h1>
+    <p class="page-banner-sub">You've been through enough. This part is simple. We review applications on a rolling basis and respond within two weeks.</p>
+  </div>
+
+  <!-- ELIGIBILITY -->
+  <section class="eligibility">
+    <div class="reveal">
+      <p class="section-label">Before You Apply</p>
+      <h2 class="section-heading">Who we help</h2>
+      <ul class="elig-list">
+        <li>Women who have undergone mastectomy or lumpectomy for breast cancer</li>
+        <li>U.S. residents with demonstrated financial need (we use flexible, income-based criteria)</li>
+        <li>Fully healed surgical sites, as confirmed by your medical provider</li>
+        <li>No prior areola restoration procedure within the past 3 years</li>
+        <li>Willingness to optionally share your story to help us raise awareness</li>
+      </ul>
+      <div class="elig-note">
+        <strong>Not sure if you qualify?</strong>
+        Apply anyway — or call us at (800) 555-0192. We'd rather talk it through than have you miss out.
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">What You'll Need</p>
+      <h2 class="section-heading" style="font-size:2rem;">A few things to have ready</h2>
+      <ul class="elig-list">
+        <li>Basic contact and location information</li>
+        <li>A brief description of your cancer history and treatment</li>
+        <li>A note from your medical provider confirming surgical healing</li>
+        <li>Basic household income information (self-reported, no documentation required initially)</li>
+      </ul>
+      <div class="elig-note">
+        <strong>Your privacy matters.</strong>
+        All information you share is kept strictly confidential. We will never share your personal details without your explicit consent.
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="application" id="form">
+    <p class="section-label reveal">The Application</p>
+    <h2 class="section-heading reveal">Tell us about yourself</h2>
+    <p class="reveal" style="font-size:1rem;color:#7a4a5a;margin-top:-1.5rem;margin-bottom:0;">Fields marked <span style="color:var(--clay);">*</span> are required.</p>
+
+    <form class="form-grid" onsubmit="handleSubmit(event)">
+
+      <p class="form-section-title">Personal Information</p>
+
+      <div class="form-group">
+        <label for="fname">First Name <span class="required">*</span></label>
+        <input type="text" id="fname" placeholder="Your first name" required/>
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name <span class="required">*</span></label>
+        <input type="text" id="lname" placeholder="Your last name" required/>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" placeholder="you@example.com" required/>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="(555) 000-0000"/>
+      </div>
+      <div class="form-group">
+        <label for="city">City <span class="required">*</span></label>
+        <input type="text" id="city" required/>
+      </div>
+      <div class="form-group">
+        <label for="state">State <span class="required">*</span></label>
+        <select id="state" required>
+          <option value="">Select your state</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+          <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+          <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+          <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+          <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+          <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+          <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+          <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+          <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+          <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+          <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+          <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+          <option>Wisconsin</option><option>Wyoming</option>
+        </select>
+      </div>
+
+      <hr class="form-divider"/>
+      <p class="form-section-title">Medical Background</p>
+
+      <div class="form-group">
+        <label for="surgery-type">Type of Surgery <span class="required">*</span></label>
+        <select id="surgery-type" required>
+          <option value="">Select one</option>
+          <option>Bilateral mastectomy</option>
+          <option>Unilateral mastectomy</option>
+          <option>Lumpectomy</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="surgery-year">Approximate Year of Surgery <span class="required">*</span></label>
+        <input type="text" id="surgery-year" placeholder="e.g. 2022" required/>
+      </div>
+      <div class="form-group full">
+        <label for="healing">Has your surgeon confirmed your surgical sites are fully healed? <span class="required">*</span></label>
+        <select id="healing" required>
+          <option value="">Select one</option>
+          <option>Yes — I have confirmation from my provider</option>
+          <option>Not yet — I'm in the process of confirming</option>
+          <option>I'm unsure</option>
+        </select>
+      </div>
+
+      <hr class="form-divider"/>
+      <p class="form-section-title">Financial & Additional Information</p>
+
+      <div class="form-group">
+        <label for="household-size">Household Size <span class="required">*</span></label>
+        <select id="household-size" required>
+          <option value="">Select one</option>
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="income">Annual Household Income (approximate) <span class="required">*</span></label>
+        <select id="income" required>
+          <option value="">Select one</option>
+          <option>Under $30,000</option>
+          <option>$30,000 – $50,000</option>
+          <option>$50,000 – $75,000</option>
+          <option>$75,000 – $100,000</option>
+          <option>Over $100,000</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label for="story">Tell us a little about your journey (optional)</label>
+        <textarea id="story" placeholder="Share as much or as little as you're comfortable with. This helps us understand your experience and is never required."></textarea>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="consent" required/>
+        <label for="consent">I confirm the information I've provided is accurate to the best of my knowledge, and I understand that grants are subject to availability and eligibility review. <span style="color:var(--clay);">*</span></label>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-primary">Submit Application</button>
+        <p class="form-privacy">🔒 Your information is private and will never be shared without your consent.</p>
+      </div>
+
+    </form>
+
+    <!-- Success message -->
+    <div id="success-msg" style="display:none;margin-top:3rem;padding:2.5rem;background:var(--warm-white);border-left:3px solid var(--deep-burgundy);">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep-burgundy);">Thank you for applying.</p>
+      <p style="font-size:1rem;color:#7a4a5a;margin-top:0.75rem;">We've received your application and will be in touch within two weeks. You deserve this — and we're honored to be part of your healing journey.</p>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="what-to-expect">
+    <p class="section-label reveal" style="color:var(--dusty-rose);">After You Apply</p>
+    <h2 class="section-heading reveal" style="color:var(--sand);">What happens next</h2>
+    <div class="expect-grid">
+      <div class="expect-item reveal">
+        <p class="expect-num">01</p>
+        <p class="expect-title">We Review</p>
+        <p class="expect-body">Our team reviews every application personally — no automated rejections. We'll reach out if we have questions. You'll hear from us within two weeks.</p>
+      </div>
+      <div class="expect-item reveal">
+        <p class="expect-num">02</p>
+        <p class="expect-title">We Match You</p>
+        <p class="expect-body">Once approved, we'll connect you with a vetted paramedical tattoo artist in your area who specializes in areola restoration.</p>
+      </div>
+      <div class="expect-item reveal">
+        <p class="expect-num">03</p>
+        <p class="expect-title">We Pay Directly</p>
+        <p class="expect-body">We handle payment directly with the artist. You show up for your appointment — that's it. No invoices, no reimbursements, no out-of-pocket costs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <a class="footer-brand" href="/">The Whole Again Initiative</a>
+      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/apply">Apply for a Grant</a></li>
+        <li><a href="/donate">Donate</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Resources</p>
+      <ul class="footer-links">
+        <li><a href="#">For Medical Providers</a></li>
+        <li><a href="#">Join Our Artist Network</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 The Whole Again Initiative · All rights reserved.</p>
+    <p class="footer-tax">EIN 00-0000000 · 501(c)(3) Tax-Exempt Organization</p>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.querySelector('.form-grid').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('form').offsetTop - 100, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
