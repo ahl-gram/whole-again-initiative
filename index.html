@@ -848,7 +848,7 @@
       </div>
       <div class="form-note">
         <strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep-burgundy);">Need help applying?</strong><br/>
-        <span style="font-size:0.9rem;color:#7a4a5a;">Call us at (800) 555-0192 or email <a href="/cdn-cgi/l/email-protection#ee899c8f809a9dae998681828b8f898f8780c0819c89" style="color:var(--clay);"><span class="__cf_email__" data-cfemail="b7d0c5d6d9c3c4f7c0dfd8dbd2d6d0d6ded999d8c5d0">[email&#160;protected]</span></a>. A real human answers.</span>
+        <span style="font-size:0.9rem;color:#7a4a5a;">Call us at (800) 555-0192 or email <a href="mailto:hello@wholeagaininitiative.org" style="color:var(--clay);">hello@wholeagaininitiative.org</a>. A real human answers.</span>
       </div>
     </div>
   </section>
@@ -909,7 +909,7 @@
     <p class="footer-tax">EIN 00-0000000 · 501(c)(3) Tax-Exempt Organization</p>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -923,4 +923,12 @@
     reveals.forEach(el => observer.observe(el));
 
     // Donate chip toggle
-    document.querySelectorAll('.amount-c
+    document.querySelectorAll('.amount-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.amount-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
