@@ -37,7 +37,6 @@ whole-again-initiative/
 - **Add a page**: Create a new `.html` file, add a route to `_redirects`, and update nav links in all pages
 
 ## TODO
-- Replace `EIN 00-0000000` with actual EIN once obtained
 - Update © year as needed
 - Add Mindy's last name when available
 - Add board member titles and bios as they're confirmed

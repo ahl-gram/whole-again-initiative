@@ -210,24 +210,15 @@
       margin-top: 0.25rem;
     }
 
-    /* Decorative circle */
-    .hero-circle {
+    /* Centered logo on hero */
+    .hero-logo {
       position: absolute;
-      width: 420px; height: 420px;
-      border-radius: 50%;
-      border: 1px solid rgba(212,165,165,0.4);
-      top: 50%; left: 50%;
+      top: 38%; left: 50%;
       transform: translate(-50%, -50%);
-      animation: rotateSlow 30s linear infinite;
-    }
-    .hero-circle::before {
-      content: '';
-      position: absolute;
-      width: 320px; height: 320px;
-      border-radius: 50%;
-      border: 1px dashed rgba(184,125,109,0.3);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      width: min(90%, 735px);
+      height: auto;
+      z-index: 1;
+      animation: fadeIn 1.4s 0.6s ease both;
     }
 
     /* Vertical rule */
@@ -353,81 +344,51 @@
 
     /* ── IMPACT ──────────────────────────────────────────── */
     .impact {
-      padding: 8rem 6rem;
+      padding: 9rem 6rem;
       background: var(--warm-white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
+      display: flex;
+      justify-content: center;
       align-items: center;
     }
 
     .impact-quote {
       position: relative;
+      max-width: 980px;
+      text-align: center;
+      padding: 0 2rem;
     }
     .impact-quote::before {
       content: '\201C';
       font-family: 'Cormorant Garamond', serif;
-      font-size: 12rem;
+      font-size: 16rem;
       font-weight: 300;
       color: var(--dusty-rose);
       opacity: 0.3;
       position: absolute;
-      top: -3.5rem; left: -2rem;
+      top: -6rem; left: 50%;
+      transform: translateX(-50%);
       line-height: 1;
       pointer-events: none;
     }
 
     .impact-quote blockquote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
       font-weight: 300;
       font-style: italic;
       color: var(--deep-burgundy);
-      line-height: 1.5;
+      line-height: 1.4;
       position: relative;
       z-index: 1;
     }
 
     .impact-attribution {
       font-family: 'Jost', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--clay);
-      margin-top: 1.5rem;
-    }
-
-    .impact-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .impact-card {
-      background: var(--petal);
-      border-left: 3px solid var(--dusty-rose);
-      padding: 1.75rem 2rem;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .impact-card:hover {
-      border-left-color: var(--deep-burgundy);
-      transform: translateX(6px);
-    }
-
-    .impact-card-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 300;
-      color: var(--deep-burgundy);
-      line-height: 1;
-    }
-    .impact-card-desc {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--clay);
-      margin-top: 0.25rem;
+      margin-top: 2.5rem;
     }
 
     /* ── ELIGIBILITY ─────────────────────────────────────── */
@@ -564,6 +525,15 @@
       color: var(--deep-burgundy);
     }
 
+    .amount-chip-accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.15rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
     .btn-donate {
       display: inline-block;
       padding: 1rem 3.5rem;
@@ -665,11 +635,6 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
-    @keyframes rotateSlow {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
     /* Scroll reveal */
     .reveal {
       opacity: 0;
@@ -722,7 +687,7 @@
         <em>Cannot Take</em>
       </h1>
       <p class="hero-tagline">
-        We fund 3D areola restoration tattooing for breast cancer survivors — because healing is physical, emotional, and deeply personal.
+        The Whole Again Initiative is dedicated to expanding access to restorative and supportive care for individuals affected by breast cancer—restoring dignity, confidence, and a sense of wholeness throughout their healing journey.
       </p>
       <div class="hero-ctas">
         <a href="#apply" class="btn-primary">Apply for a Grant</a>
@@ -731,7 +696,7 @@
     </div>
 
     <div class="hero-right">
-      <div class="hero-circle"></div>
+      <img class="hero-logo" src="/images/logo.png" alt="Whole Again Initiative logo" />
       <div class="hero-right-content">
         <div class="hero-stat-block">
           <div class="hero-stat">
@@ -739,12 +704,12 @@
             <div class="hero-stat-label">Women diagnosed with breast cancer in their lifetime</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">~$800</div>
+            <div class="hero-stat-number">~$1500</div>
             <div class="hero-stat-label">Average cost of areola restoration, rarely covered by insurance</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">100%</div>
-            <div class="hero-stat-label">Of our grants go directly to procedure costs</div>
+            <div class="hero-stat-number">$0</div>
+            <div class="hero-stat-label">Out-of-pocket cost to every grant recipient</div>
           </div>
         </div>
       </div>
@@ -754,7 +719,7 @@
   <!-- MISSION BAND -->
   <section class="mission-band" id="mission">
     <div>
-      <p class="mission-label">Our Mission</p>
+      <p class="mission-label">3D Areola Tattoos</p>
       <h2 class="mission-heading">
         More than<br/>
         <em>skin deep</em>
@@ -765,10 +730,10 @@
         After mastectomy, many women feel their healing journey is incomplete. 3D areola restoration tattooing is a powerful final step — one that helps women reconnect with their bodies and move forward with confidence.
       </p>
       <p>
-        But it's often considered cosmetic. Insurance rarely covers it. And the cost falls entirely on the women who need it most. The Whole Again Initiative closes that gap through grant funding, so finances never stand between a survivor and her sense of self.
+        But although it is not cosmetic, insurance rarely covers it. And the cost falls entirely on the women who need it most. The Whole Again Initiative closes that gap through grant funding, so finances never stand between a survivor and her sense of self.
       </p>
       <p>
-        We partner with skilled paramedical tattoo artists across the country to ensure every woman we serve receives compassionate, expert care — at no cost to her.
+        We partner with skilled paramedical tattoo artists to ensure every woman we serve receives compassionate, expert care — at no cost to her.
       </p>
     </div>
   </section>
@@ -785,7 +750,7 @@
       </div>
       <div class="step reveal">
         <h3 class="step-title">Get Matched</h3>
-        <p class="step-body">We pair you with a vetted paramedical tattoo artist near you who specializes in areola restoration. Every artist in our network has been personally reviewed for skill, sensitivity, and expertise.</p>
+        <p class="step-body">We pair you with a vetted licensed medical professional near you who is also a tattoo artist and who specializes in areola restoration. Every artist in our network has been reviewed for expertise, positive outcomes, and outstanding patient care.</p>
       </div>
       <div class="step reveal">
         <h3 class="step-title">Heal Fully</h3>
@@ -798,28 +763,9 @@
   <section class="impact" id="impact">
     <div class="impact-quote reveal">
       <blockquote>
-        "I'd been a survivor for three years. But it wasn't until the restoration that I finally felt like myself again. I looked in the mirror and just… exhaled."
+        "Having this done has given me back my self confidence and I finally see <u>me</u> in the mirror again. For so long I only saw tubes and scars, but my reflection is me again."
       </blockquote>
-      <p class="impact-attribution">— Grant recipient, Ohio · 2023</p>
-    </div>
-
-    <div class="impact-cards">
-      <div class="impact-card reveal">
-        <div class="impact-card-num">312</div>
-        <div class="impact-card-desc">Women funded since our founding</div>
-      </div>
-      <div class="impact-card reveal">
-        <div class="impact-card-num">48</div>
-        <div class="impact-card-desc">Partner artists across 32 states</div>
-      </div>
-      <div class="impact-card reveal">
-        <div class="impact-card-num">$0</div>
-        <div class="impact-card-desc">Out-of-pocket cost to every grant recipient</div>
-      </div>
-      <div class="impact-card reveal">
-        <div class="impact-card-num">97%</div>
-        <div class="impact-card-desc">Of recipients report improved body confidence post-procedure</div>
-      </div>
+      <p class="impact-attribution">— 3D Areola Tattoo Patient</p>
     </div>
   </section>
 
@@ -827,13 +773,11 @@
   <section class="eligibility" id="apply">
     <div>
       <p class="section-label reveal">Grant Eligibility</p>
-      <h2 class="section-heading reveal">Who we help</h2>
+      <h2 class="section-heading reveal">Who we help for 3D areola tattoos</h2>
       <ul class="eligibility-list reveal">
-        <li>Women who have undergone mastectomy or lumpectomy for breast cancer</li>
-        <li>U.S. residents with financial need (income-based, flexible criteria)</li>
-        <li>Fully healed surgical sites as confirmed by your medical provider</li>
-        <li>No prior areola restoration procedure within the past 3 years</li>
-        <li>Willingness to share your story (optionally) to help us raise awareness</li>
+        <li>Individuals who have undergone mastectomy or lumpectomy due to breast cancer or genetic mutations</li>
+        <li>Medically cleared by their surgeon to undergo areola tattooing</li>
+        <li>Grant preference given for those who demonstrate financial need</li>
       </ul>
     </div>
 
@@ -841,14 +785,14 @@
       <div>
         <p class="section-label">Ready to apply?</p>
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--deep-burgundy);line-height:1.2;margin-bottom:1rem;">
-          Your story matters.<br/><em>Let us help write the next chapter.</em>
+          Your story matters<br/><em>because healing is about more than just survival</em>
         </h3>
         <p style="font-size:0.98rem;color:#7a4a5a;margin-bottom:1.75rem;">Applications are reviewed on a rolling basis. We typically respond within 2 weeks of submission.</p>
         <a href="#" class="btn-primary">Start Your Application</a>
       </div>
       <div class="form-note">
         <strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep-burgundy);">Need help applying?</strong><br/>
-        <span style="font-size:0.9rem;color:#7a4a5a;">Call us at (800) 555-0192 or email <a href="mailto:hello@wholeagaininitiative.org" style="color:var(--clay);">hello@wholeagaininitiative.org</a>. A real human answers.</span>
+        <span style="font-size:0.9rem;color:#7a4a5a;">Email <a href="mailto:info@wholeagaininitiative.org" style="color:var(--clay);">info@wholeagaininitiative.org</a>. A real human will respond.</span>
       </div>
     </div>
   </section>
@@ -862,13 +806,14 @@
         <em>her whole self back</em>
       </h2>
       <p class="donate-subtext">
-        Every dollar goes directly toward funding procedures. No administrative bloat — just real impact for real women.
+        90 cents of every dollar goes directly toward funding procedures. No administrative bloat, just real impact for real women.
       </p>
       <div class="donate-amounts">
-        <button class="amount-chip">$25</button>
-        <button class="amount-chip active">$50</button>
-        <button class="amount-chip">$100</button>
-        <button class="amount-chip">$250</button>
+        <button class="amount-chip">$50</button>
+        <button class="amount-chip active">$100</button>
+        <button class="amount-chip">$200</button>
+        <button class="amount-chip">$500</button>
+        <button class="amount-chip">Sponsor a woman's transformation</button>
         <button class="amount-chip">Other</button>
       </div>
       <a href="#" class="btn-donate">Donate Now</a>
@@ -906,7 +851,7 @@
   </footer>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 The Whole Again Initiative · All rights reserved.</p>
-    <p class="footer-tax">EIN 00-0000000 · 501(c)(3) Tax-Exempt Organization</p>
+    <p class="footer-tax">EIN 36-5174146 · 501(c)(3) Tax-Exempt Organization</p>
   </div>
 
   <script>

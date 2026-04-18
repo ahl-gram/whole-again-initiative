@@ -143,7 +143,6 @@ Board cards currently show initials placeholder with "Bio coming soon" and "Phot
 
 ## Outstanding TODOs
 
-- [ ] Replace `EIN 00-0000000` with actual EIN (appears in footer of all pages and donate.html)
 - [ ] Add Mindy's last name
 - [ ] Add board member titles
 - [ ] Add board member bios (remove `placeholder` class from `.board-card-bio`)
