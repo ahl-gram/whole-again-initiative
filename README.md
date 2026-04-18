@@ -42,4 +42,4 @@ whole-again-initiative/
 - Add board member titles and bios as they're confirmed
 - Add board member photos (replace the initials placeholders in about.html)
 - Connect a real payment processor to donate.html (Stripe, PayPal, etc.)
-- Connect a real form backend to apply.html (Netlify Forms, Formspree, etc.). The current `handleSubmit` only shows a success message — it doesn't upload the medical-clearance file. When wiring up the backend, also add `enctype="multipart/form-data"` to the `<form>` so the attachment is captured.
+- Connect a real form backend to apply.html and contact.html (Netlify Forms, Formspree, etc.). The current `handleSubmit` on both pages only shows a success message — no data is sent. For apply.html specifically, it also doesn't upload the medical-clearance file; when wiring up the backend, add `enctype="multipart/form-data"` to that `<form>` so the attachment is captured.

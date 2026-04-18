@@ -36,11 +36,18 @@ whole-again-initiative/
 ├── about.html        ← About Us & Board of Directors
 ├── apply.html        ← Grant Application form
 ├── donate.html       ← Donation page with interactive widget
+├── contact.html      ← Contact page (form + mailing address + email)
 ├── _redirects        ← Netlify clean URL config
 ├── CLAUDE.md         ← This file
 ├── README.md         ← Setup/deployment notes
-└── css/
-    └── shared.css    ← Shared styles: nav, footer, buttons, utilities, animations
+├── css/
+│   └── shared.css    ← Shared styles: nav, footer, buttons, utilities, animations
+├── js/
+│   └── include.js    ← Fetches and injects partials via data-include
+├── partials/
+│   └── footer.html   ← Shared footer markup (included on every page)
+└── images/
+    └── logo.png      ← Whole Again Initiative logo (used on home hero)
 ```
 
 ---
@@ -149,10 +156,9 @@ Board cards currently show initials placeholder with "Bio coming soon" and "Phot
 - [ ] Add board member titles
 - [ ] Add board member bios (remove `placeholder` class from `.board-card-bio`)
 - [ ] Add board member photos (replace `.board-card-initials` span with `<img>`)
-- [ ] Connect real form backend to `apply.html` — recommend **Netlify Forms** (just add `netlify` attribute to the `<form>` tag — it's free and built in). Current `handleSubmit` in `apply.html` only hides the form and shows a success message; it does NOT upload the medical-clearance file anywhere. When wiring up the backend, also add `enctype="multipart/form-data"` to the `<form>` so the file attachment is actually captured.
+- [ ] Connect real form backend to `apply.html` and `contact.html` — recommend **Netlify Forms** (just add `netlify` attribute to the `<form>` tag — it's free and built in). Current `handleSubmit` on both pages only hides the form and shows a success message; no data is sent anywhere. For `apply.html` specifically, it does NOT upload the medical-clearance file — when wiring up the backend, also add `enctype="multipart/form-data"` to that `<form>` so the file attachment is actually captured.
 - [ ] Connect real payment processor to `donate.html` — recommend **Stripe** or **PayPal Giving Fund** (free for nonprofits)
 - [ ] Update copyright year as needed
-- [ ] Consider adding a Contact page
 - [ ] Consider adding a "For Artists" page for paramedical tattoo artists wanting to join the network
 
 ---

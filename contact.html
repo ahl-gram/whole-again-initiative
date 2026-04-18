@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us &middot; The Whole Again Initiative</title>
+  <link rel="stylesheet" href="/css/shared.css"/>
+  <style>
+    /* ── CONTACT SECTION ────────────────────────────────── */
+    .contact {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* Left: contact info */
+    .contact-info p.intro {
+      font-size: 1.05rem;
+      color: #5a3040;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+    .contact-block {
+      padding: 1.5rem 1.75rem;
+      background: var(--petal);
+      border-left: 3px solid var(--dusty-rose);
+      margin-bottom: 1.5rem;
+    }
+    .contact-block-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.6rem;
+    }
+    .contact-block-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    .contact-block-body a {
+      color: var(--deep-burgundy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--dusty-rose);
+      transition: border-color 0.2s;
+    }
+    .contact-block-body a:hover { border-color: var(--deep-burgundy); }
+
+    /* Right: form */
+    .contact-form-wrap {
+      background: var(--petal);
+      padding: 3rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+    label .required { color: var(--clay); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--warm-white);
+      border: 1px solid rgba(212,165,165,0.5);
+      color: var(--text-dark);
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--clay);
+      box-shadow: 0 0 0 3px rgba(184,125,109,0.1);
+    }
+    textarea { resize: vertical; min-height: 160px; }
+
+    .form-submit {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-privacy {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: rgba(122,74,90,0.6);
+    }
+
+    @media (max-width: 900px) {
+      .contact { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      .contact-form-wrap { padding: 2rem; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">The Whole Again Initiative</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/apply">Apply</a></li>
+      <li><a href="/donate">Donate</a></li>
+      <li><a href="/contact" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <p class="page-banner-eyebrow">Contact</p>
+    <h1 class="page-banner-title">Get in <em>touch</em></h1>
+    <p class="page-banner-sub">We'd love to hear from you. Whether you're a survivor, an artist, a medical professional, or a donor, reach out using the form below or the details on this page.</p>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact">
+
+    <!-- Left: info -->
+    <div class="contact-info reveal">
+      <p class="section-label">How to Reach Us</p>
+      <h2 class="section-heading">We're here<br/>to help</h2>
+      <p class="intro">A real human will respond. Most messages receive a reply within two business days.</p>
+
+      <div class="contact-block">
+        <p class="contact-block-label">Email</p>
+        <p class="contact-block-body">
+          <a href="mailto:info@wholeagaininitiative.org">info@wholeagaininitiative.org</a>
+        </p>
+      </div>
+
+      <div class="contact-block">
+        <p class="contact-block-label">Mailing Address</p>
+        <p class="contact-block-body">
+          The Whole Again Initiative<br/>
+          2751 E. County Line Rd.<br/>
+          #308<br/>
+          Lutz, FL 33559
+        </p>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div class="contact-form-wrap reveal">
+      <form class="form-grid" onsubmit="handleSubmit(event)">
+
+        <div class="form-group">
+          <label for="name">Name <span class="required">*</span></label>
+          <input type="text" id="name" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" placeholder="you@example.com" required/>
+        </div>
+        <div class="form-group full">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" placeholder="What is this about?"/>
+        </div>
+        <div class="form-group full">
+          <label for="message">Message <span class="required">*</span></label>
+          <textarea id="message" placeholder="Share as much or as little as you'd like." required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">Send Message</button>
+          <p class="form-privacy">&#128274; Your information is private and will never be shared without your consent.</p>
+        </div>
+
+      </form>
+
+      <!-- Success message -->
+      <div id="success-msg" style="display:none;margin-top:2rem;padding:2rem;background:var(--warm-white);border-left:3px solid var(--deep-burgundy);">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--deep-burgundy);">Thank you for reaching out.</p>
+        <p style="font-size:1rem;color:#7a4a5a;margin-top:0.5rem;">We've received your message and will be in touch soon.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER (shared — /partials/footer.html) -->
+  <div data-include="/partials/footer.html"></div>
+  <script src="/js/include.js" defer></script>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.querySelector('.form-grid').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
