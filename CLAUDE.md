@@ -114,13 +114,16 @@ Original Desert Rose palette with serif typography substituted in place of the o
 
 Current board members (in `about.html`):
 
+Listed in alphabetical order by last name:
+
 | Name | Last Name | Title | Bio | Photo |
 |------|-----------|-------|-----|-------|
-| Kelly | Fowler | TODO | TODO | TODO |
-| Irene | Wahba | TODO | TODO | TODO |
-| Mindy | **LAST NAME UNKNOWN** | TODO | TODO | TODO |
+| Judith | Barreiro | TODO | TODO | TODO |
+| Kelly | Carpenter | TODO | TODO | TODO |
 | Jennifer | Echeverry | TODO | TODO | TODO |
 | Jill | Elliott | TODO | TODO | TODO |
+| Mindy | Miller | TODO | TODO | TODO |
+| Irene | Wahba | TODO | TODO | TODO |
 
 Board cards currently show initials placeholder with "Bio coming soon" and "Photo coming soon" tags. To update a card, find the `.board-card` block for that person in `about.html` and fill in:
 - `.board-card-title` — their role/title
@@ -143,11 +146,10 @@ Board cards currently show initials placeholder with "Bio coming soon" and "Phot
 
 ## Outstanding TODOs
 
-- [ ] Add Mindy's last name
 - [ ] Add board member titles
 - [ ] Add board member bios (remove `placeholder` class from `.board-card-bio`)
 - [ ] Add board member photos (replace `.board-card-initials` span with `<img>`)
-- [ ] Connect real form backend to `apply.html` — recommend **Netlify Forms** (just add `netlify` attribute to the `<form>` tag — it's free and built in)
+- [ ] Connect real form backend to `apply.html` — recommend **Netlify Forms** (just add `netlify` attribute to the `<form>` tag — it's free and built in). Current `handleSubmit` in `apply.html` only hides the form and shows a success message; it does NOT upload the medical-clearance file anywhere. When wiring up the backend, also add `enctype="multipart/form-data"` to the `<form>` so the file attachment is actually captured.
 - [ ] Connect real payment processor to `donate.html` — recommend **Stripe** or **PayPal Giving Fund** (free for nonprofits)
 - [ ] Update copyright year as needed
 - [ ] Consider adding a Contact page

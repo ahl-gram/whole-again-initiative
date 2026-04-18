@@ -101,6 +101,35 @@
     }
     textarea { resize: vertical; min-height: 120px; }
 
+    .file-input {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      background: var(--warm-white);
+      border: 1px solid rgba(212,165,165,0.5);
+      color: var(--text-dark);
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .file-input::file-selector-button {
+      margin-right: 1rem;
+      padding: 0.5rem 1.25rem;
+      background: var(--deep-burgundy);
+      color: var(--warm-white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 2px solid var(--deep-burgundy);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .file-input::file-selector-button:hover {
+      background: transparent;
+      color: var(--deep-burgundy);
+    }
+
     .form-divider {
       grid-column: 1 / -1;
       border: none;
@@ -219,24 +248,22 @@
       <p class="section-label">Before You Apply</p>
       <h2 class="section-heading">Who we help</h2>
       <ul class="elig-list">
-        <li>Women who have undergone mastectomy or lumpectomy for breast cancer</li>
-        <li>U.S. residents with demonstrated financial need (we use flexible, income-based criteria)</li>
-        <li>Fully healed surgical sites, as confirmed by your medical provider</li>
-        <li>No prior areola restoration procedure within the past 3 years</li>
-        <li>Willingness to optionally share your story to help us raise awareness</li>
+        <li>Individuals who have undergone mastectomy or lumpectomy due to breast cancer or genetic mutations</li>
+        <li>Medically cleared by their surgeon to undergo areola tattooing</li>
+        <li>Grant preference given for those who demonstrate financial need</li>
       </ul>
       <div class="elig-note">
         <strong>Not sure if you qualify?</strong>
-        Apply anyway — or call us at (800) 555-0192. We'd rather talk it through than have you miss out.
+        Apply anyway. Email us at info@wholeagaininitiative.org. We'd rather talk it through with you than have you miss out.
       </div>
     </div>
     <div class="reveal">
       <p class="section-label">What You'll Need</p>
       <h2 class="section-heading" style="font-size:2rem;">A few things to have ready</h2>
       <ul class="elig-list">
-        <li>Basic contact and location information</li>
+        <li>Basic contact information</li>
         <li>A brief description of your cancer history and treatment</li>
-        <li>A note from your medical provider confirming surgical healing</li>
+        <li>A note from your medical provider confirming clearance to undergo a tattoo procedure</li>
         <li>Basic household income information (self-reported, no documentation required initially)</li>
       </ul>
       <div class="elig-note">
@@ -314,13 +341,18 @@
         <input type="text" id="surgery-year" placeholder="e.g. 2022" required/>
       </div>
       <div class="form-group full">
-        <label for="healing">Has your surgeon confirmed your surgical sites are fully healed? <span class="required">*</span></label>
+        <label for="healing">Has your surgeon cleared you to undergo areola tattooing? <span class="required">*</span></label>
         <select id="healing" required>
           <option value="">Select one</option>
           <option>Yes — I have confirmation from my provider</option>
           <option>Not yet — I'm in the process of confirming</option>
           <option>I'm unsure</option>
         </select>
+      </div>
+
+      <div class="form-group full">
+        <label for="clearance">Upload medical clearance here</label>
+        <input type="file" id="clearance" name="clearance" accept=".pdf,.jpg,.jpeg,.png,.heic" class="file-input"/>
       </div>
 
       <hr class="form-divider"/>
@@ -392,35 +424,9 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <a class="footer-brand" href="/">The Whole Again Initiative</a>
-      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
-    </div>
-    <div>
-      <p class="footer-col-title">Navigate</p>
-      <ul class="footer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/apply">Apply for a Grant</a></li>
-        <li><a href="/donate">Donate</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-col-title">Resources</p>
-      <ul class="footer-links">
-        <li><a href="#">For Medical Providers</a></li>
-        <li><a href="#">Join Our Artist Network</a></li>
-        <li><a href="#">Press & Media</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-  </footer>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2025 The Whole Again Initiative · All rights reserved.</p>
-    <p class="footer-tax">EIN 36-5174146 · 501(c)(3) Tax-Exempt Organization</p>
-  </div>
+  <!-- FOOTER (shared — /partials/footer.html) -->
+  <div data-include="/partials/footer.html"></div>
+  <script src="/js/include.js" defer></script>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');

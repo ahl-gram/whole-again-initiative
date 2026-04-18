@@ -518,8 +518,9 @@
       transition: all 0.2s;
       background: transparent;
       letter-spacing: 0.06em;
+      text-decoration: none;
     }
-    .amount-chip:hover, .amount-chip.active {
+    .amount-chip:hover {
       background: var(--dusty-rose);
       border-color: var(--dusty-rose);
       color: var(--deep-burgundy);
@@ -532,25 +533,6 @@
       font-size: 1.15rem;
       letter-spacing: 0;
       text-transform: none;
-    }
-
-    .btn-donate {
-      display: inline-block;
-      padding: 1rem 3.5rem;
-      background: var(--dusty-rose);
-      color: var(--deep-burgundy);
-      font-family: 'Jost', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 2px solid var(--dusty-rose);
-      transition: all 0.3s ease;
-    }
-    .btn-donate:hover {
-      background: transparent;
-      color: var(--dusty-rose);
     }
 
     /* ── FOOTER ──────────────────────────────────────────── */
@@ -568,6 +550,8 @@
       font-weight: 300;
       color: var(--sand);
       margin-bottom: 1rem;
+      text-decoration: none;
+      display: block;
     }
 
     .footer-tagline {
@@ -704,7 +688,7 @@
             <div class="hero-stat-label">Women diagnosed with breast cancer in their lifetime</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">~$1500</div>
+            <div class="hero-stat-number">$1500</div>
             <div class="hero-stat-label">Average cost of areola restoration, rarely covered by insurance</div>
           </div>
           <div class="hero-stat">
@@ -809,50 +793,22 @@
         90 cents of every dollar goes directly toward funding procedures. No administrative bloat, just real impact for real women.
       </p>
       <div class="donate-amounts">
-        <button class="amount-chip">$50</button>
-        <button class="amount-chip active">$100</button>
-        <button class="amount-chip">$200</button>
-        <button class="amount-chip">$500</button>
-        <button class="amount-chip">Sponsor a woman's transformation</button>
-        <button class="amount-chip">Other</button>
+        <a class="amount-chip" href="/donate">$50</a>
+        <a class="amount-chip" href="/donate">$100</a>
+        <a class="amount-chip" href="/donate">$200</a>
+        <a class="amount-chip" href="/donate">$500</a>
+        <a class="amount-chip" href="/donate">Sponsor a woman's transformation</a>
+        <a class="amount-chip" href="/donate">Other</a>
       </div>
-      <a href="#" class="btn-donate">Donate Now</a>
       <p style="margin-top:1.5rem;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.1em;color:rgba(232,213,196,0.4);text-transform:uppercase;">
         The Whole Again Initiative is a 501(c)(3) nonprofit. Donations are tax-deductible.
       </p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <p class="footer-brand">The Whole Again Initiative</p>
-      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
-    </div>
-    <div>
-      <p class="footer-col-title">Navigate</p>
-      <ul class="footer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/apply">Apply for a Grant</a></li>
-        <li><a href="/donate">Donate</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-col-title">Resources</p>
-      <ul class="footer-links">
-        <li><a href="#">For Medical Providers</a></li>
-        <li><a href="#">Join Our Artist Network</a></li>
-        <li><a href="#">Press & Media</a></li>
-        <li><a href="#">Annual Report</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-  </footer>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2026 The Whole Again Initiative · All rights reserved.</p>
-    <p class="footer-tax">EIN 36-5174146 · 501(c)(3) Tax-Exempt Organization</p>
-  </div>
+  <!-- FOOTER (shared — /partials/footer.html) -->
+  <div data-include="/partials/footer.html"></div>
+  <script src="/js/include.js" defer></script>
 
   <script>
     // Scroll reveal
@@ -866,14 +822,6 @@
       });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
-
-    // Donate chip toggle
-    document.querySelectorAll('.amount-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('.amount-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-      });
-    });
   </script>
 </body>
 </html>

@@ -279,7 +279,7 @@
   <div class="page-banner">
     <p class="page-banner-eyebrow">Support Our Work</p>
     <h1 class="page-banner-title">Give a woman<br/><em>her whole self back</em></h1>
-    <p class="page-banner-sub">100% of your donation funds procedures for breast cancer survivors. No administrative overhead. Just real impact.</p>
+    <p class="page-banner-sub">Your donation funds services and procedures for breast cancer survivors. No administrative bloat. Just real impact.</p>
   </div>
 
   <!-- MAIN DONATE SECTION -->
@@ -289,29 +289,29 @@
     <div class="donate-context reveal">
       <p class="section-label">Why It Matters</p>
       <h2 class="section-heading">Your gift does<br/>one thing</h2>
-      <p>It pays for a woman's areola restoration procedure — in full. We work with a network of paramedical tattoo artists who offer deeply discounted rates to our grant recipients. Every dollar donated is stretched as far as it can go.</p>
-      <p>Because we operate with minimal overhead, your generosity translates directly into care. No administrative fees, no fundraising salaries, no bureaucracy between your gift and the woman it helps.</p>
+      <p>It pays for a woman's areola restoration procedure in full. We work with a network of medically licensed paramedical tattoo artists. Every dollar donated is stretched as far as it can go.</p>
+      <p>Because we operate with minimal overhead, your generosity translates directly into care. No administrative fees, no fundraising salaries, no administrative friction between your gift and the woman it helps.</p>
 
       <div class="impact-breakdown">
         <div class="impact-row">
-          <span class="impact-amount">$25</span>
+          <span class="impact-amount">$50</span>
           <span class="impact-desc">Covers artist consultation and intake for one recipient</span>
         </div>
         <div class="impact-row">
-          <span class="impact-amount">$50</span>
+          <span class="impact-amount">$100</span>
           <span class="impact-desc">Covers supplies and aftercare products for a full procedure</span>
         </div>
         <div class="impact-row">
-          <span class="impact-amount">$100</span>
+          <span class="impact-amount">$200</span>
+          <span class="impact-desc">Covers one follow-up tattoo session</span>
+        </div>
+        <div class="impact-row">
+          <span class="impact-amount">$500</span>
           <span class="impact-desc">Covers half the cost of a unilateral restoration procedure</span>
         </div>
         <div class="impact-row">
-          <span class="impact-amount">$250</span>
-          <span class="impact-desc">Funds a full bilateral restoration — completely restoring a survivor</span>
-        </div>
-        <div class="impact-row">
-          <span class="impact-amount">$500+</span>
-          <span class="impact-desc">Sponsors a recipient from application to completed procedure</span>
+          <span class="impact-amount">$1500</span>
+          <span class="impact-desc">Sponsors a recipient from application to fully completed bilateral procedure</span>
         </div>
       </div>
     </div>
@@ -327,11 +327,11 @@
       </div>
 
       <div class="amount-grid">
-        <button class="amount-btn" onclick="selectAmount(this, 25)">$25</button>
-        <button class="amount-btn selected" onclick="selectAmount(this, 50)">$50</button>
+        <button class="amount-btn" onclick="selectAmount(this, 50)">$50</button>
         <button class="amount-btn" onclick="selectAmount(this, 100)">$100</button>
-        <button class="amount-btn" onclick="selectAmount(this, 250)">$250</button>
+        <button class="amount-btn" onclick="selectAmount(this, 200)">$200</button>
         <button class="amount-btn" onclick="selectAmount(this, 500)">$500</button>
+        <button class="amount-btn" onclick="selectAmount(this, 1500)">$1500</button>
         <button class="amount-btn" onclick="selectAmount(this, 0)">Other</button>
       </div>
 
@@ -340,7 +340,7 @@
         <input type="number" id="custom-input" placeholder="Enter amount" min="1" oninput="updateImpact()"/>
       </div>
 
-      <p class="widget-impact-line" id="impact-line">Your $50 covers supplies for one woman's full procedure.</p>
+      <p class="widget-impact-line" id="impact-line"></p>
 
       <button class="btn-give" onclick="handleDonate()">Donate Now</button>
 
@@ -360,7 +360,7 @@
       <div class="way-card reveal">
         <div class="way-icon">🎨</div>
         <p class="way-title">Join Our Artist Network</p>
-        <p class="way-body">Are you a paramedical tattoo artist? Partner with us to serve grant recipients in your area. We handle the paperwork — you bring the healing.</p>
+        <p class="way-body">Are you a medically licensed paramedical tattoo artist? Partner with us to serve grant recipients in your area. We handle the paperwork — you bring the healing.</p>
       </div>
       <div class="way-card reveal">
         <div class="way-icon">🏥</div>
@@ -399,35 +399,9 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <a class="footer-brand" href="/">The Whole Again Initiative</a>
-      <p class="footer-tagline">Funding 3D areola restoration for breast cancer survivors who deserve to feel complete.</p>
-    </div>
-    <div>
-      <p class="footer-col-title">Navigate</p>
-      <ul class="footer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/apply">Apply for a Grant</a></li>
-        <li><a href="/donate">Donate</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-col-title">Resources</p>
-      <ul class="footer-links">
-        <li><a href="#">For Medical Providers</a></li>
-        <li><a href="#">Join Our Artist Network</a></li>
-        <li><a href="#">Press & Media</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-  </footer>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2025 The Whole Again Initiative · All rights reserved.</p>
-    <p class="footer-tax">EIN 36-5174146 · 501(c)(3) Tax-Exempt Organization</p>
-  </div>
+  <!-- FOOTER (shared — /partials/footer.html) -->
+  <div data-include="/partials/footer.html"></div>
+  <script src="/js/include.js" defer></script>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
@@ -444,13 +418,15 @@
     let currentAmount = 50;
     let currentFreq = 'one-time';
 
-    const impactMessages = {
-      25:  'Your $25 covers the consultation and intake for one recipient.',
-      50:  'Your $50 covers supplies for one woman\'s full procedure.',
-      100: 'Your $100 covers half the cost of a unilateral restoration.',
-      250: 'Your $250 funds a complete bilateral restoration — fully restoring one woman.',
-      500: 'Your $500 sponsors a recipient from application to completed care.',
-    };
+    // Derive impact messages from the .impact-row elements on the page,
+    // so the left-panel breakdown is the single source of truth.
+    const impactMessages = Object.fromEntries(
+      Array.from(document.querySelectorAll('.impact-row')).map(row => {
+        const amt = parseInt(row.querySelector('.impact-amount').textContent.replace(/\D/g, ''), 10);
+        const desc = row.querySelector('.impact-desc').textContent.trim();
+        return [amt, `Your $${amt} ${desc.charAt(0).toLowerCase() + desc.slice(1)}.`];
+      })
+    );
 
     function selectAmount(btn, amount) {
       document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
