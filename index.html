@@ -636,7 +636,16 @@
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
       .hero-left { padding: 8rem 2rem 4rem; }
-      .hero-right { height: 320px; }
+      .hero-right { height: auto; padding: 1rem 0 2.5rem; }
+      .hero-right-content { position: static; padding: 0 2rem; }
+      .hero-logo {
+        position: static;
+        transform: none;
+        display: block;
+        margin: 1rem auto 2.5rem;
+        width: 70%;
+        max-width: 280px;
+      }
       .mission-band,
       .impact,
       .eligibility { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2rem; }
