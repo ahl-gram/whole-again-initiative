@@ -47,7 +47,7 @@ whole-again-initiative/
 ├── partials/
 │   └── footer.html   ← Shared footer markup (included on every page)
 └── images/
-    └── logo.png      ← Whole Again Initiative logo (used on home hero)
+    └── logo.png      ← Whole Again Initiative logo, tight-cropped (used on home hero)
 ```
 
 ---
@@ -170,6 +170,8 @@ Board cards currently show initials placeholder with "Bio coming soon" and "Phot
 **Change a color globally:** Edit the CSS variable in `:root` in `css/shared.css`.
 
 **Add a board member:** In `about.html`, copy an existing `.board-card` div block and update name, initials, title, and bio.
+
+**Replace the hero logo:** Use a tightly-cropped PNG (no transparent padding). The `.hero-logo` CSS sizing assumes the image bounds equal the visible logo — padded source images will render too small. If the source has whitespace, trim it first: `magick source.png -trim +repage -bordercolor none -border 40 images/logo.png`.
 
 **Add a new page:**
 1. Create `newpage.html` using an existing page as a template
